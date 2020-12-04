@@ -62,8 +62,8 @@ class Movie {
 
   static async delete(id) {
     try {
-      const movies = await movieCollection.deleteOne({ _id: ObjectID(id) })
-      return movies
+      const movies = await movieCollection.findOneAndDelete({ _id: ObjectID(id) })
+      return movies.value
     }
     catch (error) {
       console.log(error)

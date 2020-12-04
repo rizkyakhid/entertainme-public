@@ -62,8 +62,8 @@ class Series {
 
   static async delete(id) {
     try {
-      const series = await seriesCollection.deleteOne({ _id: ObjectID(id) })
-      return series
+      const series = await seriesCollection.findOneAndDelete({ _id: ObjectID(id) })
+      return series.value
     }
     catch (error) {
       console.log(error)
