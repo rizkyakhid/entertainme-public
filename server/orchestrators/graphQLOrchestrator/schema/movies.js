@@ -42,7 +42,7 @@ const resolvers = {
         else {
           const movies = await axios({
             method: 'get',
-            url: 'http://localhost:3004/'
+            url: movieUrl
           })
           await redis.set('movies', JSON.stringify(movies.data))
           return movies.data
@@ -57,7 +57,7 @@ const resolvers = {
         const { _id } = args
         const movie = await axios({
           method: 'get',
-          url: 'http://localhost:3004/' + _id
+          url: movieUrl + _id
         })
         return movie.data
       }
@@ -72,7 +72,7 @@ const resolvers = {
         const newAddedMovie = args.newAddedMovie
         const newMovie = await axios({
           method: 'post',
-          url: 'http://localhost:3004/',
+          url: movieUrl,
           data: newAddedMovie
         })
         await redis.del('movies')
@@ -88,7 +88,7 @@ const resolvers = {
         const { _id } = args
         const newMovie = await axios({
           method: 'put',
-          url: 'http://localhost:3004/' + _id,
+          url: movieUrl + _id,
           data: newEditedMovie
         })
         await redis.del('movies')
@@ -103,7 +103,7 @@ const resolvers = {
         const { _id } = args
         const deletedMovie = await axios({
           method: 'delete',
-          url: 'http://localhost:3004/' + _id
+          url: movieUrl + _id
         })
         await redis.del('movies')
         return deletedMovie.data
