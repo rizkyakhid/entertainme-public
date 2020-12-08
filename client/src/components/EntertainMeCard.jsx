@@ -1,8 +1,10 @@
+// import { useMutation } from '@apollo/client'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
 function EntertainMeCard(props) {
   const { content, home } = props
+  
   return (
     <div className="col-3">
       <div className="card" style={{ width: '18rem' }}>
@@ -13,12 +15,13 @@ function EntertainMeCard(props) {
           </p>
           <p>
             Popularity: {content.popularity} <br />
-            Tags: {content.tags.join(', ')}
+            Tags: {content.tags}
           </p>
           {
             home &&
             <div>
-              <Link to={`/edit/${content._id}`} className='btn btn-primary'>Edit</Link>
+              <Link to={`/details/${content._id}`} className='btn btn-primary'>Details</Link>
+              <Link to={`/edit/${content._id}`} className='btn btn-info ml-1'>Edit</Link>
               <button className='btn btn-danger ml-1'>Delete</button>
             </div>
           }

@@ -11,6 +11,8 @@ import AddMovies from './pages/AddMovies'
 import EditMovies from './pages/EditMovies'
 import SeriesOnly from './pages/SeriesOnly'
 import MoviesOnly from './pages/MoviesOnly'
+import Favorites from './pages/Favorites'
+import Details from './pages/Details'
 
 function App() {
   return (
@@ -28,6 +30,12 @@ function App() {
           </Route>
           <Route path='/add'>
             <AddMovies></AddMovies>
+          </Route>
+          <Route path='/favorites'>
+            <Favorites></Favorites>
+          </Route>
+          <Route path='/details/:id'>
+            <Details></Details>
           </Route>
           <Route path='/edit/:id'>
             <EditMovies></EditMovies>

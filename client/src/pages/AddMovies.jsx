@@ -1,8 +1,11 @@
 import React from 'react'
+import Form from '../components/Form'
 
 function AddMovies() {
   return (
-    <h1>Hello add movies form</h1>
+    <div className="container">
+      <Form add={true} />
+    </div>
   )
 }
 

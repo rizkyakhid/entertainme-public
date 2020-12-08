@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-export const getEntertainment = gql`
+export const GET_ENTERTAINMENT = gql`
   query getEntertainment {
     movies {
       _id
@@ -21,15 +21,23 @@ export const getEntertainment = gql`
   }
 `
 
-// export const getMovieById = gql`
-//   query getMovieById($_id: ID!) {
-//     movie(_id: $_id) {
-//       _id
-//       title
-//       overview
-//       poster_path
-//       popularity
-//       tags
-//     }
-//   }
-// `
+export const GET_BY_ID = gql`
+  query getMovieById($id: ID) {
+    movie(_id: $id) {
+      _id
+      title
+      overview
+      poster_path
+      popularity
+      tags
+    }
+    series(_id: $id) {
+      _id
+      title
+      overview
+      poster_path
+      popularity
+      tags
+    }
+  }
+`

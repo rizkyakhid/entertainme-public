@@ -1,12 +1,12 @@
 import { useQuery } from '@apollo/client'
 import React from 'react'
-import { Link } from 'react-router-dom'
 import EntertainMeCard from '../components/EntertainMeCard'
-import { getEntertainment } from '../config/queries'
+import NavButtons from '../components/NavButtons'
+import { GET_ENTERTAINMENT } from '../config/queries'
 
 function Home() {
 
-  const { data, loading, error } = useQuery(getEntertainment)
+  const { data, loading, error, refetch } = useQuery(GET_ENTERTAINMENT)
 
   if (error) {
     console.log(error)
@@ -16,6 +16,7 @@ function Home() {
   }
 
   else if (loading) {
+    refetch()
     return (
       <h1>Loading...</h1>
     )
@@ -24,19 +25,19 @@ function Home() {
   else {
     return (
       <div className='container'>
-        <Link to='/add' className='btn btn-primary mt-2'>Add Movies</Link>
-        <Link to='/movies' className='btn btn-primary mt-2 ml-2'>All Movies</Link>
-        <Link to='/series' className='btn btn-primary mt-2 ml-2'>All Series</Link>
-        <h1 className='my-2'>Movies:</h1>
+        <NavButtons />
+        <hr />
+        <h1 className='my-2'>Movies</h1>
         <div className="row">
           {
-            data.movies.map((movie, movId) => (<EntertainMeCard key={movId} content={movie} home={true}/>))
+            data.movies.map((movie, movId) => (<EntertainMeCard key={movId} content={movie} home={true} />))
           }
         </div>
-        <h1 className='my-2'>Series:</h1>
+        <hr/>
+        <h1 className='my-2'>Series</h1>
         <div className="row">
           {
-            data.series.map((ser, serId) => (<EntertainMeCard key={serId} content={ser}/>))
+            data.series.map((ser, serId) => (<EntertainMeCard key={serId} content={ser} />))
           }
         </div>
       </div>
