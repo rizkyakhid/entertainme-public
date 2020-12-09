@@ -23,7 +23,6 @@ function Form(props) {
 
     setInput({
       ...input,
-      [name]: name === 'tags' ? [value] : value,
       [name]: name === 'popularity' ? +value : value
     })
   }
