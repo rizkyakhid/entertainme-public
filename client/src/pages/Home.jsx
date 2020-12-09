@@ -4,6 +4,7 @@ import EntertainMeCard from '../components/EntertainMeCard'
 import NavButtons from '../components/NavButtons'
 import { DELETE_MOVIE } from '../config/mutations'
 import { GET_ENTERTAINMENT } from '../config/queries'
+import Swal from 'sweetalert2' 
 
 function Home() {
 
@@ -11,10 +12,28 @@ function Home() {
   const [deleteMovie] = useMutation(DELETE_MOVIE, { refetchQueries: [{ query: GET_ENTERTAINMENT }] })
 
   function handleDelete(id) {
-    deleteMovie({
-      variables: { id }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You are about to delete this movie from the list",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, go on!',
+      cancelButtonText: 'Nonono, my bad'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteMovie({
+          variables: { id }
+        })
+        refetch()
+        Swal.fire(
+          'Deleted!',
+          'Your movie has been deleted from the list!',
+          'success'
+        )
+      }
     })
-    refetch()
   }
 
   if (error) {
@@ -33,7 +52,7 @@ function Home() {
 
   else {
     return (
-      <div className='container'>
+      <div className='container my-2'>
         <NavButtons />
         <hr />
         <h1 className='my-2'>Movies</h1>

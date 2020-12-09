@@ -23,7 +23,7 @@ function Form(props) {
         </div>
         <div className="form-group">
           <label htmlFor="popularity">Popularity</label>
-          <input type="number" name="popularity" id="popularity" className="form-control" value={edit ? input.popularity : undefined} onChange={(e) => handleInput(e)}/>
+          <input type="number" name="popularity" id="popularity" className="form-control" min='1' value={edit ? input.popularity : undefined} onChange={(e) => handleInput(e)}/>
         </div>
         <div className="form-group">
           <label htmlFor="tags">Tags</label>

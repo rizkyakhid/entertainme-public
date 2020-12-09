@@ -15,7 +15,7 @@ function EditMovies() {
     title: '',
     overview: '',
     poster_path: '',
-    popularity: 0,
+    popularity: '',
     tags: []
   })
   const [editMovie] = useMutation(EDIT_MOVIE, { refetchQueries: [{ query: GET_ENTERTAINMENT }] })
@@ -67,7 +67,6 @@ function EditMovies() {
   }
 
   else {
-    console.log(input)
     return (
       <div className="container">
         <Form

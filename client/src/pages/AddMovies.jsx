@@ -29,7 +29,6 @@ function AddMovies() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    console.log(input)
     addMovie({
       variables: { newAddedMovie: input }
     })

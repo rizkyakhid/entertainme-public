@@ -46,3 +46,16 @@ export const GET_SERIES_BY_ID = gql`
     }
   }
 `
+
+export const GET_FAVORITES = gql`
+  query getFavorites {
+    favorites @client {
+      _id
+      title
+      overview
+      poster_path
+      popularity
+      tags
+    }
+  }
+`
